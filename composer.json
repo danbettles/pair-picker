@@ -1,0 +1,25 @@
+{
+    "name": "danbettles/pair-picker",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Bettles",
+            "email": "danbettles@yahoo.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {"Danbettles\\PairPicker\\": "src/Danbettles/PairPicker/"}
+    },
+    "scripts": {
+        "app:test": "phpunit -c tests .",
+        "app:testdox": "phpunit -c tests --testdox .",
+        "app:lint": "~/.composer/vendor/bin/phpcs --standard=phpcs.xml --extensions=php -p --ignore=/vendor/ .",
+        "app:check-quality": [
+            "composer app:test",
+            "composer app:lint"
+        ]
+    }
+}
