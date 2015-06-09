@@ -29,8 +29,6 @@ $uniqueCombinations = $picker->createUniqueCombinations([
     'Deborah',
     'Vaishali',
     'Lewis',
-    'Beth',
-    'Gary',
     'Alan',
 ]);
 
