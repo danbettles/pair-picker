@@ -9,6 +9,7 @@ namespace Tests\Danbettles\PairPicker\PairPicker;
 
 use Danbettles\PairPicker\PairPicker;
 use Danbettles\PairPicker\Pairings;
+use Danbettles\PairPicker\PairingsCollection;
 
 class Test extends \PHPUnit_Framework_TestCase
 {
@@ -21,20 +22,20 @@ class Test extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                [
+                new PairingsCollection([
                     new Pairings([['foo', 'bar']]),
-                ],
+                ]),
                 [
                     'foo',
                     'bar',
                 ],
             ],
             [
-                [
+                new PairingsCollection([
                     new Pairings([['foo', 'bar'], ['baz', null]]),
                     new Pairings([['foo', 'baz'], ['bar', null]]),
                     new Pairings([['foo', null], ['bar', 'baz']]),
-                ],
+                ]),
                 [
                     'foo',
                     'bar',
@@ -44,11 +45,11 @@ class Test extends \PHPUnit_Framework_TestCase
                 ],
             ],
             [
-                [
+                new PairingsCollection([
                     new Pairings([['foo', 'bar'], ['baz', 'qux']]),
                     new Pairings([['foo', 'baz'], ['bar', 'qux']]),
                     new Pairings([['foo', 'qux'], ['bar', 'baz']]),
-                ],
+                ]),
                 [
                     'foo',
                     'bar',
@@ -58,13 +59,13 @@ class Test extends \PHPUnit_Framework_TestCase
                 ],
             ],
             [
-                [
+                new PairingsCollection([
                     new Pairings([['foo', 'bar'], ['baz', 'qux'], ['norf', null]]),
                     new Pairings([['foo', 'baz'], ['bar', 'norf'], ['qux', null]]),
                     new Pairings([['foo', 'qux'], ['bar', null], ['baz', 'norf']]),
                     new Pairings([['foo', 'norf'], ['bar', 'qux'], ['baz', null]]),
                     new Pairings([['foo', null], ['bar', 'baz'], ['qux', 'norf']]),
-                ],
+                ]),
                 [
                     'foo',
                     'bar',
@@ -77,13 +78,13 @@ class Test extends \PHPUnit_Framework_TestCase
                 ],
             ],
             [
-                [
+                new PairingsCollection([
                     new Pairings([['foo', 'bar'], ['baz', 'qux'], ['norf', 'poop']]),
                     new Pairings([['foo', 'baz'], ['bar', 'norf'], ['qux', 'poop']]),
                     new Pairings([['foo', 'qux'], ['bar', 'poop'], ['baz', 'norf']]),
                     new Pairings([['foo', 'norf'], ['bar', 'qux'], ['baz', 'poop']]),
                     new Pairings([['foo', 'poop'], ['bar', 'baz'], ['qux', 'norf']]),
-                ],
+                ]),
                 [
                     'foo',
                     'bar',

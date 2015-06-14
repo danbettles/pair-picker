@@ -36,7 +36,7 @@ $startDate = '2015-07-02';
 
 $csv = '';
 
-foreach ($uniqueCombinations as $i => $pairings) {
+foreach ($uniqueCombinations->getArray() as $i => $pairings) {
     $numWeeksElapsed = $i * 3;
     $time = strtotime("{$startDate} +{$numWeeksElapsed} weeks");
 

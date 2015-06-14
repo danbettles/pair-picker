@@ -16,12 +16,23 @@ class Pairings
 
     public function __construct(array $pairingsArray = [])
     {
-        $this->setArray($pairingsArray);
+        $this->replaceArray($pairingsArray);
     }
 
-    private function setArray(array $pairingsArray)
+    public function add(array $pairing)
     {
-        $this->array = $pairingsArray;
+        $this->array[] = $pairing;
+        return $this;
+    }
+
+    private function replaceArray(array $pairingsArray)
+    {
+        $this->array = [];
+
+        foreach ($pairingsArray as $pairing) {
+            $this->add($pairing);
+        }
+
         return $this;
     }
 
@@ -39,13 +50,6 @@ class Pairings
         }
 
         return false;
-    }
-
-    public function add(array $pair)
-    {
-        $array = $this->getArray();
-        $array[] = $pair;
-        return $this->setArray($array);
     }
 
     public function copy()

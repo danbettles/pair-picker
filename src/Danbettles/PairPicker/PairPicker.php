@@ -52,29 +52,17 @@ class PairPicker
         return $people;
     }
 
-    //@todo Rename this.
-    private function beenTogetherBefore(array $pairingsHistory, array $pair)
-    {
-        foreach ($pairingsHistory as $oldPairings) {
-            if ($oldPairings->contains($pair)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function completePairings(Pairings $accumulatedPairings, array $unpairedPeople, array &$pairingsHistory)
+    private function completePairings(Pairings $accumulatedPairings, array $unpairedPeople, PairingsCollection $pairingsHistory)
     {
         if (empty($unpairedPeople)) {
-            $pairingsHistory[] = $accumulatedPairings;
+            $pairingsHistory->add($accumulatedPairings);
             return true;
         }
 
         $rootPerson = array_shift($unpairedPeople);
 
         foreach ($unpairedPeople as $otherPersonIdx => $otherPerson) {
-            if ($this->beenTogetherBefore($pairingsHistory, [$rootPerson, $otherPerson])) {
+            if ($pairingsHistory->containsPairing([$rootPerson, $otherPerson])) {
                 continue;
             }
 
@@ -109,7 +97,7 @@ class PairPicker
 
         $rootPerson = array_shift($unpairedPeople);
 
-        $uniqueCombinations = [];
+        $uniqueCombinations = new PairingsCollection();
 
         foreach ($unpairedPeople as $otherPersonIdx => $otherPerson) {
             //(At this level, there's no need to check if the pair have been together before.)
