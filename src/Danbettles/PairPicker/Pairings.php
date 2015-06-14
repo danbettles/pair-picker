@@ -43,8 +43,10 @@ class Pairings
 
     public function contains(array $pairing)
     {
+        $reversedPairing = [end($pairing), reset($pairing)];
+
         foreach ($this->getArray() as $currPairing) {
-            if ($pairing == $currPairing || $pairing == array_reverse($currPairing)) {
+            if ($pairing == $currPairing || $reversedPairing == $currPairing) {
                 return true;
             }
         }
