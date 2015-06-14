@@ -1,0 +1,1 @@
+watch(/\.php$/) { |md| system('clear; composer app:test') }
