@@ -9,28 +9,35 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use Danbettles\PairPicker\PairPicker;
 
-$picker = new PairPicker();
-
-$uniqueCombinations = $picker->createUniqueCombinations([
-    'Carol',
-    'David',
-    'Dan',
-    'Neil',
-    'Lindsey',
-    'Lisa',
-    'Mark',
-    'Sean',
-    'Jason',
-    'Chris',
-    'Victoria',
-    'Marianne',
-    'Charlotte',
-    'Tori',
-    'Deborah',
-    'Vaishali',
-    'Lewis',
-    'Alan',
-]);
+$uniqueCombinations = PairPicker::create()
+    ->createUniqueCombinations([
+        'Lewis',
+        'Vaishali',
+        'Deborah',
+        'Tori',
+        'Charlotte',
+        'Sean',
+        'Mark',
+        'Lisa',
+        'Neil',
+        'Vikki',
+        'Chris',
+        'Dan',
+        'Marianne',
+        'Jason',
+        'David',
+        'Carol',
+        'Lindsey',
+    ])
+//    ->withoutPairing(['Carol', 'David'])
+//    ->withoutPairing(['Dan', 'Neil'])
+//    ->withoutPairing(['Lindsey', 'Lisa'])
+//    ->withoutPairing(['Mark', 'Sean'])
+//    ->withoutPairing(['Jason', 'Chris'])
+//    ->withoutPairing(['Vikki', 'Marianne'])
+//    ->withoutPairing(['Charlotte', 'Tori'])
+//    ->withoutPairing(['Deborah', 'Vaishali'])
+;
 
 $startDate = '2015-07-02';
 
