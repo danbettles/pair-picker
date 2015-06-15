@@ -110,4 +110,14 @@ class PairPicker
 
         return $uniqueCombinations;
     }
+
+    /**
+     * Returns a new instance.
+     *
+     * @return \self
+     */
+    public static function create()
+    {
+        return new self();
+    }
 }

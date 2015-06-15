@@ -155,4 +155,11 @@ class Test extends \PHPUnit_Framework_TestCase
         $picker = new PairPicker();
         $picker->createUniqueCombinations($people);
     }
+
+    public function testCreateReturnsANewInstance()
+    {
+        $picker = PairPicker::create();
+
+        $this->assertInstanceOf('Danbettles\PairPicker\PairPicker', $picker);
+    }
 }
