@@ -56,4 +56,22 @@ class Test extends \PHPUnit_Framework_TestCase
         $this->assertFalse($collection->containsPairing(['bar', 'bar']));
         $this->assertFalse($collection->containsPairing(['baz', 'qux']));
     }
+
+    public function testWithoutpairingReturnsANewCollectionContainingPairingsThatDoNotContainTheSpecifiedPairing()
+    {
+        $collection = new PairingsCollection([
+            new Pairings([['foo', 'bar'], ['baz', 'qux']]),
+            new Pairings([['foo', 'baz'], ['bar', 'qux']]),
+            new Pairings([['foo', 'qux'], ['bar', 'baz']]),
+        ]);
+
+        $something = $collection->withoutPairing(['foo', 'bar']);
+
+        $this->assertNotSame($collection, $something);
+
+        $this->assertEquals(new PairingsCollection([
+            new Pairings([['foo', 'baz'], ['bar', 'qux']]),
+            new Pairings([['foo', 'qux'], ['bar', 'baz']]),
+        ]), $something);
+    }
 }

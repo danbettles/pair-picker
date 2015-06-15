@@ -51,4 +51,27 @@ class PairingsCollection
 
         return false;
     }
+
+    /**
+     * Returns a new collection containing all pairings that do not contain the specified pairing.
+     *
+     * This returns a new collection because it's a filter method.
+     *
+     * @param array $pairing
+     * @return \self
+     */
+    public function withoutPairing(array $pairing)
+    {
+        $newCollection = new self();
+
+        foreach ($this->getArray() as $pairings) {
+            if ($pairings->contains($pairing)) {
+                continue;
+            }
+
+            $newCollection->add($pairings);
+        }
+
+        return $newCollection;
+    }
 }
