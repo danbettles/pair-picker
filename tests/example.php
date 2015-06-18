@@ -27,19 +27,18 @@ $uniqueCombinations = PairPicker::create()
         'Jason',
         'David',
         'Carol',
-        'Lindsey',
     ])
-//    ->withoutPairing(['Carol', 'David'])
-//    ->withoutPairing(['Dan', 'Neil'])
-//    ->withoutPairing(['Lindsey', 'Lisa'])
-//    ->withoutPairing(['Mark', 'Sean'])
-//    ->withoutPairing(['Jason', 'Chris'])
-//    ->withoutPairing(['Vikki', 'Marianne'])
-//    ->withoutPairing(['Charlotte', 'Tori'])
-//    ->withoutPairing(['Deborah', 'Vaishali'])
+    //Prevent the stable pairings from before.
+    ->withoutPairing(['Carol', 'David'])
+    ->withoutPairing(['Dan', 'Neil'])
+    ->withoutPairing(['Mark', 'Sean'])
+    ->withoutPairing(['Jason', 'Chris'])
+    ->withoutPairing(['Vikki', 'Marianne'])
+    ->withoutPairing(['Charlotte', 'Tori'])
+    ->withoutPairing(['Deborah', 'Vaishali'])
 ;
 
-$startDate = '2015-07-02';
+$startDate = '2015-06-25';
 
 $csv = '';
 
@@ -47,12 +46,10 @@ foreach ($uniqueCombinations->getArray() as $i => $pairings) {
     $numWeeksElapsed = $i * 3;
     $time = strtotime("{$startDate} +{$numWeeksElapsed} weeks");
 
-    $csv .= date('d F, Y', $time) . "\n\n";
+    $csv .= sprintf("\"%s\"\n\n", date('d F, Y', $time));
 
     foreach ($pairings->getArray() as $pair) {
-        $first = reset($pair);
-        $last = end($pair);
-        $csv .= "{$first},{$last}\n";
+        $csv .= sprintf("\"%s\",\"%s\"\n", reset($pair), end($pair));
     }
 
     $csv .= "\n";
